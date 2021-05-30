@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import speak from './services/speak';
 import {SpeedSelector} from './components/speedSelector'
-import {LengthSelector, numberOfDigits} from './components/lengthSelector'
-
+import {LengthSelector} from './components/lengthSelector'
+// import PlayButton from './components/PlayButton'
+import randomize from './services/generator'
 
 const Contayner = styled.div`
   height: 300px;
@@ -28,24 +29,31 @@ const ButtonStyled = styled.button`
     font-size: 16px;
 `;
 
-const OlStyled = styled.ol`
-  font-size: 16px
+const ButtonStyledActive = styled.button`
+    background-color: #4CAF50;
+    border-width: 5px;
+    border-color: white;
+    color: white;
+    text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #0fa,
+      0 0 82px #0fa,
+      0 0 92px #0fa,
+      0 0 102px #0fa,
+      0 0 151px #0fa;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 `;
 
-const SelectorStyled = styled.select`
-  font-size: 16px;
-  height: 20px;
-  width: 300px;
-`;
 
 const LabelStyled = styled.label`
   font-size: 16px; 
 `;
-
-function randomize() {
-  return (Math.trunc(Math.random()*10**Number(numberOfDigits)))
-};
-
 
 
 function App() {
@@ -57,10 +65,10 @@ function App() {
       <h1>{random}</h1>
       <Contayner>
         <ButtonStyled onClick = {() => setRandom(randomize)}>Generate</ButtonStyled>
-        <ButtonStyled onClick={() => speak(String(random))}>Play</ButtonStyled>
+        <ButtonStyled onClick = {() => speak(String(random))}>Play</ButtonStyled>
         <LabelStyled>
-        Chose pronounsation speed
-        <SpeedSelector></SpeedSelector>
+          Chose pronounsation speed
+          <SpeedSelector></SpeedSelector>
         </LabelStyled>
         <LabelStyled>
           Chose number of digits

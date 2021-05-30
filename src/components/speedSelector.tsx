@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const LabelStyled = styled.label`
-  font-size: 16px; 
-`;
 
 const SelectorStyled = styled.select`
   font-size: 16px;

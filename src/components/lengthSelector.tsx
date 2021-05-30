@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 
 
-
 const SelectorStyled = styled.select`
   font-size: 16px;
   height: 20px;
@@ -16,7 +15,7 @@ export function LengthSelector() {
 
     const [length, setLength] = useState("7");
     numberOfDigits = length;
-    return <SelectorStyled onChange={(e) => setLength(e.target.value)}>
+    return <SelectorStyled value={length} onChange={(e) => setLength(e.target.value)}>
         <option value ="1">1</option>
         <option value ="2">2</option>
         <option value ="3">3</option>
