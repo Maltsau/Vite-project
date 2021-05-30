@@ -8,6 +8,7 @@ import seven from "../assets/7.mp3";
 import eight from "../assets/8.mp3";
 import nine from "../assets/9.mp3";
 import zero from "../assets/0.mp3";
+import {speed} from "../components/speedSelector"
 
 function wait(ms: number) {
   return new Promise<void>(function (resolve) {
@@ -31,6 +32,7 @@ const NUMBER_MAP = {
 } as Record<string, string>;
 
 export default async function (number: string) {
+  console.log(speed)
   const numbers = [...number];
   for (let i = 0; i < numbers.length; i++) {
     const number = numbers[i];
@@ -38,7 +40,7 @@ export default async function (number: string) {
     if (mp3) {
       var audio = new Audio(mp3);
       audio.play();
-      await wait(1000);
+      await wait(Number(speed)*1000);
     }
   }
 }
