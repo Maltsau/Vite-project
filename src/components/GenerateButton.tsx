@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { output } from '../App';
 
-
-
 const ButtonStyled = styled.button`
     background-color: #4CAF50;
     border-width: 5px;
@@ -37,8 +35,7 @@ const ButtonStyledActive = styled.button`
     font-size: 16px;
 `;
 
-
-export default function PlayButton({ onClick }: { onClick: () => void }) {
-    if (output === 0) return <ButtonStyled onClick= {onClick}>Play</ButtonStyled>
-    else return <ButtonStyledActive onClick= {onClick}>Play</ButtonStyledActive>
+export default function GenerateButton({ onClick }: { onClick: () => void }) {
+    if (output === 0) return <ButtonStyledActive onClick= {onClick}>Generate</ButtonStyledActive>
+    else return <ButtonStyled onClick= {onClick}>Generate</ButtonStyled>
 }

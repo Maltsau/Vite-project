@@ -13,7 +13,6 @@ let speed = "";
 export function SpeedSelector() {
 
     const [delay, setDelay] = useState("1");
-    console.log(delay);
     speed = delay;
     return <SelectorStyled onChange={(e) => setDelay(e.target.value)}>
       <option value ="1">1</option>

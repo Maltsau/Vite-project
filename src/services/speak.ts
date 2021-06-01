@@ -32,7 +32,6 @@ const NUMBER_MAP = {
 } as Record<string, string>;
 
 export default async function (number: string) {
-  console.log(speed)
   const numbers = [...number];
   for (let i = 0; i < numbers.length; i++) {
     const number = numbers[i];

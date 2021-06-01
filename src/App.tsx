@@ -3,8 +3,11 @@ import styled from 'styled-components';
 import speak from './services/speak';
 import {SpeedSelector} from './components/speedSelector'
 import {LengthSelector} from './components/lengthSelector'
-// import PlayButton from './components/PlayButton'
+import PlayButton from './components/PlayButton'
+import GenerateButton from './components/GenerateButton'
 import randomize from './services/generator'
+
+let output: number;
 
 const Contayner = styled.div`
   height: 300px;
@@ -17,55 +20,28 @@ const Contayner = styled.div`
   grid-row-gap: 16px
 `;
 
-const ButtonStyled = styled.button`
-    background-color: #4CAF50;
-    border-width: 5px;
-    border-color: white;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-`;
-
-const ButtonStyledActive = styled.button`
-    background-color: #4CAF50;
-    border-width: 5px;
-    border-color: white;
-    color: white;
-    text-shadow:
-      0 0 7px #fff,
-      0 0 10px #fff,
-      0 0 21px #fff,
-      0 0 42px #0fa,
-      0 0 82px #0fa,
-      0 0 92px #0fa,
-      0 0 102px #0fa,
-      0 0 151px #0fa;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-`;
-
 
 const LabelStyled = styled.label`
   font-size: 16px; 
 `;
 
 
+
 function App() {
   
   const [random, setRandom] = useState(0);
 
+  output = random;
+
+
   return (
     <div>
-      <h1>{random}</h1>
+      <h1>
+        <span>{random}</span>
+      </h1>
       <Contayner>
-        <ButtonStyled onClick = {() => setRandom(randomize)}>Generate</ButtonStyled>
-        <ButtonStyled onClick = {() => speak(String(random))}>Play</ButtonStyled>
+        <GenerateButton onClick = {() => setRandom(randomize)}></GenerateButton>
+        <PlayButton onClick = {() => speak(String(random))}></PlayButton>
         <LabelStyled>
           Chose pronounsation speed
           <SpeedSelector></SpeedSelector>
@@ -80,3 +56,4 @@ function App() {
 };
 
 export default App
+export {output}
