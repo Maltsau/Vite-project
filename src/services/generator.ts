@@ -1,6 +1,3 @@
-import {numberOfDigits} from '../components/lengthSelector'
-
-
-export default function randomize() {
-    return (Math.trunc(Math.random()*10**Number(numberOfDigits)))
-  };
+export default function randomize(numberOfDigits: string) {
+  return Math.trunc(Math.random() * 10 ** Number(numberOfDigits));
+}

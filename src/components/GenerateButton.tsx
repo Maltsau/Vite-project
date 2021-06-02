@@ -1,41 +1,30 @@
-import React from 'react';
-import styled from 'styled-components';
-import { output } from '../App';
+import React from "react";
+import styled, { css } from "styled-components";
+import { output } from "../App";
 
-const ButtonStyled = styled.button`
-    background-color: #4CAF50;
-    border-width: 5px;
-    border-color: white;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+const highlightCss = css`
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa,
+    0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
 `;
 
-const ButtonStyledActive = styled.button`
-    background-color: #4CAF50;
-    border-width: 5px;
-    border-color: white;
-    color: white;
-    text-shadow:
-      0 0 7px #fff,
-      0 0 10px #fff,
-      0 0 21px #fff,
-      0 0 42px #0fa,
-      0 0 82px #0fa,
-      0 0 92px #0fa,
-      0 0 102px #0fa,
-      0 0 151px #0fa;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+const ButtonStyled = styled.button<{ isHighlighted: boolean }>`
+  background-color: #4caf50;
+  border-width: 5px;
+  border-color: white;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: ${({ isHighlighted }) => (isHighlighted ? 20 : 16)}px;
+  ${({ isHighlighted }) => isHighlighted && highlightCss}
+  transition: font-size 2s, text-shadow 5s;
 `;
 
 export default function GenerateButton({ onClick }: { onClick: () => void }) {
-    if (output === 0) return <ButtonStyledActive onClick= {onClick}>Generate</ButtonStyledActive>
-    else return <ButtonStyled onClick= {onClick}>Generate</ButtonStyled>
+  return (
+    <ButtonStyled onClick={onClick} isHighlighted={output === 0}>
+      Generate
+    </ButtonStyled>
+  );
 }
