@@ -7,7 +7,7 @@ import PlayButton from "./components/PlayButton";
 import GenerateButton from "./components/GenerateButton";
 import randomize from "./services/generator";
 
-let output: number;
+let output: string;
 
 const Contayner = styled.div`
   height: 300px;
@@ -25,8 +25,9 @@ const LabelStyled = styled.label`
 `;
 
 function App() {
-  const [random, setRandom] = useState(0);
+  const [random, setRandom] = useState("Number wil appear here");
   const [length, setLength] = useState("7");
+  const [delay, setDelay] = useState("1");
 
   output = random;
 
@@ -36,13 +37,11 @@ function App() {
         <span>{random}</span>
       </h1>
       <Contayner>
-        <GenerateButton
-          onClick={() => setRandom(() => randomize(length))}
-        ></GenerateButton>
-        <PlayButton onClick={() => speak(String(random))}></PlayButton>
+        <GenerateButton onClick={() => setRandom(() => randomize(length))}></GenerateButton>
+        <PlayButton onClick={() => speak(random, delay)}></PlayButton>
         <LabelStyled>
           Chose pronounsation speed
-          <SpeedSelector></SpeedSelector>
+          <SpeedSelector value={delay} onChange={setDelay}></SpeedSelector>
         </LabelStyled>
         <LabelStyled>
           Chose number of digits

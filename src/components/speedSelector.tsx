@@ -8,17 +8,19 @@ const SelectorStyled = styled.select`
   width: 300px;
 `;
 
-let speed = "";
 
-export function SpeedSelector() {
 
-    const [delay, setDelay] = useState("1");
-    speed = delay;
-    return <SelectorStyled onChange={(e) => setDelay(e.target.value)}>
+export function SpeedSelector({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (newValue: string) => void;
+}) {
+    return <SelectorStyled value={value} onChange={(e) => onChange(e.target.value)}>
       <option value ="1">1</option>
       <option value ="2">2</option>
       <option value ="3">3</option>
     </SelectorStyled>
 };
   
-export  {speed};

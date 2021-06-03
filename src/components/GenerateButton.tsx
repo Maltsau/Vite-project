@@ -18,12 +18,11 @@ const ButtonStyled = styled.button<{ isHighlighted: boolean }>`
   display: inline-block;
   font-size: ${({ isHighlighted }) => (isHighlighted ? 20 : 16)}px;
   ${({ isHighlighted }) => isHighlighted && highlightCss}
-  transition: font-size 2s, text-shadow 5s;
 `;
 
 export default function GenerateButton({ onClick }: { onClick: () => void }) {
   return (
-    <ButtonStyled onClick={onClick} isHighlighted={output === 0}>
+    <ButtonStyled onClick={onClick} isHighlighted={output === "Number wil appear here"}>
       Generate
     </ButtonStyled>
   );
