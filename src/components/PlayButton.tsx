@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { output } from '../App';
+
 
 
 
@@ -23,8 +23,14 @@ const ButtonStyled = styled.button<{ isHighlighted: boolean }>`
 `;
 
 
-export default function PlayButton({ onClick }: { onClick: () => void }) {
-    return (<ButtonStyled onClick={onClick} isHighlighted={output !== "Number wil appear here"}>
+export default function PlayButton({
+    value,
+    onClick,
+  }: {
+    value: string;
+    onClick: () => void;
+  }) {
+    return (<ButtonStyled onClick={onClick} isHighlighted={value !== "Number will appear here"}>
         PLAY
     </ButtonStyled>
     );

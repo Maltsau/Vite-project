@@ -8,6 +8,7 @@ import seven from "../assets/7.mp3";
 import eight from "../assets/8.mp3";
 import nine from "../assets/9.mp3";
 import zero from "../assets/0.mp3";
+import er from "../assets/error.mp3"
 
 
 function wait(ms: number) {
@@ -39,7 +40,10 @@ export default async function (number: string, delay: string) {
     if (mp3) {
       var audio = new Audio(mp3);
       audio.play();
-      await wait(Number(delay)*1000);
+      await wait(Number(delay)*1000);}
+    else {
+      let audio = new Audio(er);
+      audio.play();
     }
   }
 }

@@ -7,7 +7,6 @@ import PlayButton from "./components/PlayButton";
 import GenerateButton from "./components/GenerateButton";
 import randomize from "./services/generator";
 
-let output: string;
 
 const Contayner = styled.div`
   height: 300px;
@@ -24,21 +23,27 @@ const LabelStyled = styled.label`
   font-size: 16px;
 `;
 
+const SpanStyled = styled.span<{ isExist: boolean }>`
+  font-size: ${ ({isExist}) => (isExist ? 30: 16)}px;
+  color: black;
+`;
+
+
+
 function App() {
-  const [random, setRandom] = useState("Number wil appear here");
+  const [random, setRandom] = useState("Number will appear here");
   const [length, setLength] = useState("7");
   const [delay, setDelay] = useState("1");
 
-  output = random;
 
   return (
     <div>
       <h1>
-        <span>{random}</span>
+        <SpanStyled isExist = {random !== "Number will appear here"}>{[...random]}</SpanStyled>
       </h1>
       <Contayner>
-        <GenerateButton onClick={() => setRandom(() => randomize(length))}></GenerateButton>
-        <PlayButton onClick={() => speak(random, delay)}></PlayButton>
+        <GenerateButton value={random} onClick={() => setRandom(() => randomize(length))}></GenerateButton>
+        <PlayButton value={random} onClick={() => speak(random, delay)}></PlayButton>
         <LabelStyled>
           Chose pronounsation speed
           <SpeedSelector value={delay} onChange={setDelay}></SpeedSelector>
@@ -53,4 +58,4 @@ function App() {
 }
 
 export default App;
-export { output };
+

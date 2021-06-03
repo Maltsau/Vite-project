@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { output } from "../App";
+
 
 const highlightCss = css`
   text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa,
@@ -20,9 +20,15 @@ const ButtonStyled = styled.button<{ isHighlighted: boolean }>`
   ${({ isHighlighted }) => isHighlighted && highlightCss}
 `;
 
-export default function GenerateButton({ onClick }: { onClick: () => void }) {
+export default function GenerateButton({
+  value,
+  onClick,
+}: {
+  value: string;
+  onClick: () => void;
+}) {
   return (
-    <ButtonStyled onClick={onClick} isHighlighted={output === "Number wil appear here"}>
+    <ButtonStyled onClick={onClick} isHighlighted={value === "Number will appear here"}>
       Generate
     </ButtonStyled>
   );
