@@ -7,7 +7,7 @@ const SelectorStyled = styled.select`
   width: 300px;
 `;
 
-export function LengthSelector({
+export default function LengthSelector({
   value,
   onChange,
 }: {

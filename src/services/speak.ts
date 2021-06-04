@@ -35,11 +35,15 @@ const NUMBER_MAP = {
 export default async function (number: string, delay: string) {
   const numbers = [...number];
   for (let i = 0; i < numbers.length; i++) {
-    const number = numbers[i];
-    const mp3 = NUMBER_MAP[number];
+    const number = {
+      value: numbers[i],
+      isHighlighted: false
+    };
+    const mp3 = NUMBER_MAP[number.value];
     if (mp3) {
-      var audio = new Audio(mp3);
+      let audio = new Audio(mp3);
       audio.play();
+      number.isHighlighted = true;
       await wait(Number(delay)*1000);}
     else {
       let audio = new Audio(er);

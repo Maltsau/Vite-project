@@ -10,7 +10,7 @@ const SelectorStyled = styled.select`
 
 
 
-export function SpeedSelector({
+export default function SpeedSelector({
   value,
   onChange,
 }: {

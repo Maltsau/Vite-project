@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import speak from "./services/speak";
-import { SpeedSelector } from "./components/speedSelector";
-import { LengthSelector } from "./components/lengthSelector";
+import SpeedSelector from "./components/speedSelector";
+import LengthSelector from "./components/lengthSelector";
 import PlayButton from "./components/PlayButton";
 import GenerateButton from "./components/GenerateButton";
 import randomize from "./services/generator";
-
+import Highlighter from "./components/Highlighter"
 
 const Contayner = styled.div`
   height: 300px;
@@ -23,24 +23,18 @@ const LabelStyled = styled.label`
   font-size: 16px;
 `;
 
-const SpanStyled = styled.span<{ isExist: boolean }>`
-  font-size: ${ ({isExist}) => (isExist ? 30: 16)}px;
-  color: black;
-`;
-
 
 
 function App() {
   const [random, setRandom] = useState("Number will appear here");
   const [length, setLength] = useState("7");
   const [delay, setDelay] = useState("1");
+  const [highlight, setHighlight] = useState([]);
 
 
   return (
     <div>
-      <h1>
-        <SpanStyled isExist = {random !== "Number will appear here"}>{[...random]}</SpanStyled>
-      </h1>
+      <Highlighter number= {random} highlight></Highlighter>
       <Contayner>
         <GenerateButton value={random} onClick={() => setRandom(() => randomize(length))}></GenerateButton>
         <PlayButton value={random} onClick={() => speak(random, delay)}></PlayButton>
