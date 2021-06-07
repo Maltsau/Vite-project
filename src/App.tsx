@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import speak from "./services/speak";
+import useSpeak from "./services/useSpeak";
 import SpeedSelector from "./components/speedSelector";
 import LengthSelector from "./components/lengthSelector";
 import PlayButton from "./components/PlayButton";
 import GenerateButton from "./components/GenerateButton";
 import randomize from "./services/generator";
-import Highlighter from "./components/Highlighter"
+import Highlighter from "./components/Highlighter";
 
 const Contayner = styled.div`
   height: 300px;
@@ -23,21 +23,21 @@ const LabelStyled = styled.label`
   font-size: 16px;
 `;
 
-
-
 function App() {
   const [random, setRandom] = useState("Number will appear here");
   const [length, setLength] = useState("7");
   const [delay, setDelay] = useState("1");
   const [highlight, setHighlight] = useState([]);
-
-
+  const { play, stop } = useSpeak(delay, (position, char) => console.log(char));
   return (
     <div>
-      <Highlighter number= {random} highlight={true}></Highlighter>
+      <Highlighter number={random} highlight={true}></Highlighter>
       <Contayner>
-        <GenerateButton value={random} onClick={() => setRandom(() => randomize(length))}></GenerateButton>
-        <PlayButton value={random} onClick={() => speak(random, delay, ()=>{}, ()=>{})}></PlayButton>
+        <GenerateButton
+          value={random}
+          onClick={() => setRandom(() => randomize(length))}
+        ></GenerateButton>
+        <PlayButton value={random} onClick={() => play(random)}></PlayButton>
         <LabelStyled>
           Chose pronounsation speed
           <SpeedSelector value={delay} onChange={setDelay}></SpeedSelector>
@@ -52,4 +52,3 @@ function App() {
 }
 
 export default App;
-
