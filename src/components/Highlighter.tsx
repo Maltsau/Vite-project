@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { AnyStyledComponent } from "styled-components";
 
 
@@ -17,7 +17,7 @@ type RandomNumberType = {
     highlight: boolean;
   };
 
-export default function ({ number, highlight=false }: RandomNumberType) {
+export default function ({ number, highlight=true }: RandomNumberType) {
     return (
       <Container>
         {[...number].map((character, i) => (

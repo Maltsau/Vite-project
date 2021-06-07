@@ -34,10 +34,10 @@ function App() {
 
   return (
     <div>
-      <Highlighter number= {random} highlight></Highlighter>
+      <Highlighter number= {random} highlight={true}></Highlighter>
       <Contayner>
         <GenerateButton value={random} onClick={() => setRandom(() => randomize(length))}></GenerateButton>
-        <PlayButton value={random} onClick={() => speak(random, delay)}></PlayButton>
+        <PlayButton value={random} onClick={() => speak(random, delay, ()=>{}, ()=>{})}></PlayButton>
         <LabelStyled>
           Chose pronounsation speed
           <SpeedSelector value={delay} onChange={setDelay}></SpeedSelector>

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react"
 import one from "../assets/1.mp3";
 import two from "../assets/2.mp3";
 import three from "../assets/3.mp3";
@@ -32,22 +33,50 @@ const NUMBER_MAP = {
   "0": zero
 } as Record<string, string>;
 
-export default async function (number: string, delay: string) {
-  const numbers = [...number];
-  for (let i = 0; i < numbers.length; i++) {
-    const number = {
-      value: numbers[i],
-      isHighlighted: false
-    };
-    const mp3 = NUMBER_MAP[number.value];
-    if (mp3) {
-      let audio = new Audio(mp3);
-      audio.play();
-      number.isHighlighted = true;
-      await wait(Number(delay)*1000);}
-    else {
-      let audio = new Audio(er);
-      audio.play();
+// export default async function (number: string, delay: string) {
+//   const numbers = [...number];
+//   for (let i = 0; i < numbers.length; i++) {
+//     const number =  numbers[i];
+//     const mp3 = NUMBER_MAP[number];
+//     if (mp3) {
+//       let audio = new Audio(mp3);
+//       audio.play();
+//       await wait(Number(delay)*1000);}
+//     else {
+//       let audio = new Audio(er);
+//       audio.play();
+//     }
+//   }
+// }
+
+export default function (text: string, delay: string, onUpdate: (position: number) => void, onComplete: () => void) {
+  const isPlaying = useRef(false);
+  useEffect (() => {
+    async function play (text: string) {
+      isPlaying.current = true;
+      for (let position = 0; position < text.length; position++) {
+        if (!isPlaying.current) {
+          break;
+        }
+        const char = text[position];
+        const mp3 = NUMBER_MAP[char];
+        if (mp3) {
+          let audio = new Audio(mp3);
+          audio.play();
+          onUpdate (position);
+          await wait(Number(delay)*1000);
+        }
+        else {
+          let audio = new Audio (er);
+          audio.play();
+        }
+        isPlaying.current = false;
+        onComplete();
+      }
+      play (text);
+      () => {
+        isPlaying.current = false;
+      }
     }
-  }
+  }, [text])
 }
