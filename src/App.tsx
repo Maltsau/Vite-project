@@ -27,11 +27,13 @@ function App() {
   const [random, setRandom] = useState("Number will appear here");
   const [length, setLength] = useState("7");
   const [delay, setDelay] = useState("1");
-  const [highlight, setHighlight] = useState([]);
+  const [highlight, setHighlight] = useState(0);
   const { play, stop } = useSpeak(delay, (position, char) => console.log(char));
+
+  
   return (
     <div>
-      <Highlighter number={random} highlight={true}></Highlighter>
+      <Highlighter number={random} highlight={highlight} setHighlight= {()=>{}}></Highlighter>
       <Contayner>
         <GenerateButton
           value={random}

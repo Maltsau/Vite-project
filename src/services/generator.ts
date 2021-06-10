@@ -5,6 +5,12 @@ function randomNumberBetween(min: number, max: number) {
 }
 
 export default function (numberOfDigits: string) {
-  const random = randomNumberBetween(10**(Number(numberOfDigits)-1), 10**Number(numberOfDigits)-1); 
-  return String(random);
+  let random: number;
+  if (Number(numberOfDigits) === 1) {
+    random = randomNumberBetween(0, 9);
+  }
+  else {
+    random = randomNumberBetween(10**(Number(numberOfDigits)-1), 10**(Number(numberOfDigits))-1);
+  }
+return String(random);
 }

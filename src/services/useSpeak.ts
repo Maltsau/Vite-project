@@ -32,21 +32,6 @@ const NUMBER_MAP = {
   "0": zero,
 } as Record<string, string>;
 
-// export default async function (number: string, delay: string) {
-//   const numbers = [...number];
-//   for (let i = 0; i < numbers.length; i++) {
-//     const number =  numbers[i];
-//     const mp3 = NUMBER_MAP[number];
-//     if (mp3) {
-//       let audio = new Audio(mp3);
-//       audio.play();
-//       await wait(Number(delay)*1000);}
-//     else {
-//       let audio = new Audio(er);
-//       audio.play();
-//     }
-//   }
-// }
 
 export default function (
   delay: string,
